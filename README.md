@@ -59,6 +59,7 @@ The order of 'song:' and 'artist:' doesn't matter. Always remember to seperate t
 
 ## Credits
 Alan Wright of [NetflixBot](https://github.com/alanwright/NetflixBot)
+
 [PRAW](https://praw.readthedocs.org/en/latest/pages/getting_started.html)
 
 
