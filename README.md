@@ -1,4 +1,4 @@
-[NetflixBot](http://reddit.com/user/spotify_search)
+[Spotify_Search](http://reddit.com/user/spotify_search)
 ===============================
 
 ##Description
@@ -57,5 +57,8 @@ The order of 'song:' and 'artist:' doesn't matter. Always remember to seperate t
 
 * [r/music](http://reddit.com/r/music)
 
-## 
+## Credits
+Alan Wright of [NetflixBot](https://github.com/alanwright/NetflixBot)
+[PRAW](https://praw.readthedocs.org/en/latest/pages/getting_started.html)
+
 
