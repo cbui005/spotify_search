@@ -27,9 +27,9 @@ Song names aren't case sensitive, but they are context sensitive so you should i
 For a list of top songs by an artist:
 
 ```
-/u/netflixbot artist: artist_name_here
+/u/spotify_search artist: artist_name_here
 
-/u/netflixbot artist: Jay Z
+/u/spotify_search artist: Jay Z
 ```
 Again artist names are not case sensitive, but always include any special characters and spaces.
 
@@ -38,11 +38,11 @@ Again artist names are not case sensitive, but always include any special charac
 To search a specific song by a specific artist:
 
 ```
-/u/netflixbot song: Human artist: The Killers
+/u/spotify_search song: Human artist: The Killers
 
-/u/netflixbot artist: Childish Gambino song: Sober
+/u/spotify_search artist: Childish Gambino song: Sober
 
-/u/netflixbot song: All Day artist: Kanye West
+/u/spotify_search song: All Day artist: Kanye West
 ```
 The order of 'song:' and 'artist:' doesn't matter. Always remember to seperate things with spaces.
 
