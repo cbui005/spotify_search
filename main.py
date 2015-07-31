@@ -141,7 +141,11 @@ def parse_name(line, phrase):
         text = text[0:len(text) - 1]
     return text
 
-# given artist name and song, build a list and call function to reply
+# search when comment gives both 'song:' and 'artist:'.
+'''
+Search algorithm: pulls up list of artists' top songs and checks if any of those songs are the correct one.
+If not, search the title of the song directly and try to match artist.
+'''
 def spotify_pair_search(song, artist, c, already_done):
     sp = spotipy.Spotify()
     results = sp.search(q=song, limit=None)
@@ -162,21 +166,33 @@ def spotify_pair_search(song, artist, c, already_done):
         song_name = []
         #assemble text string to use PRAW's reply function
         assemblesonglist(song_link, song_name, artist, song, c, already_done)
+        
     else:
+        # pull up page for 'artist', check if 'song' is a song of 'artist'
         song_link = []
         song_name = []
-
         for i, t in enumerate(results['tracks']['items']):
             link_str = str(t['external_urls'])
-            artist_str = str(t['artists'])
-            begin = artist_str.find("'name':")
-            begin_str = artist_str[begin:]
-            end = begin_str.find(',')
-            artist_name = str(begin_str[9:end - 1])
-            if artist_name.lower() == artist.lower():
+            is_found = (t['name'].lower()).find(song.lower())
+            if is_found != -1:
+                print('found song: ' + t['name'])
                 song_name.append(t['name'])
                 song_link.append(link_str[13:len(link_str) - 2])
-        #assemble text string to use PRAW's reply function
+        if not song_link:
+            # if no results were found, search 'song' names and check if 'artist' is an artist of those songs
+            song_results = sp.search(q=song, limit=None)
+            for i, t in enumerate(song_results['tracks']['items']):
+                artist_name = str(t['artists'])
+                link_str_2 = str(t['external_urls'])
+                artist_begin = artist_name.find("'name':")
+                name_begin = artist_name[artist_begin+9:]
+                name_end = name_begin.find("'")
+                artist_name = name_begin[:name_end]
+                print(artist_name)
+                is_found_2 = (artist.lower()).find(artist_name.lower())
+                if is_found_2 != -1:
+                    song_name.append(t['name'])
+                    song_link.append(link_str_2[13:len(link_str) - 2])
         assemblesong(song_link, song_name, artist, song, c, already_done)
 
 # given song name, build a list of results and call function to reply
